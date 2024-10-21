@@ -1,11 +1,25 @@
 import type { Metadata } from 'next';
 
 import '../config/globals.css';
-import { blogDesc, blogName } from '@/config/const';
+import { baseDomain, blogDesc, blogName, blogThumbnailURL } from '@/config/const';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(baseDomain),
   title: blogName,
   description: blogDesc,
+  openGraph: {
+    title: blogName,
+    description: blogDesc,
+    siteName: blogName,
+    images: [blogThumbnailURL],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: blogName,
+    description: blogDesc,
+    images: [blogThumbnailURL],
+  },
 };
 
 export default function RootLayout({
