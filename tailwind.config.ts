@@ -15,47 +15,45 @@ const PX_ENTRIES_1000 = createPxEntries(1000);
 
 const config: Config = {
   darkMode: ['class'],
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-	prefix: '',
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  prefix: '',
   theme: {
-		borderWidth: PX_ENTRIES_10,
+    borderWidth: PX_ENTRIES_10,
     fontSize: PX_ENTRIES_100,
     // spacing values are inherited by the 'padding', 'margin', 'height', 'maxHeight', 'flex-basis', 'gap', 'inset', 'space', 'translate', 'scrollMargin', 'scrollPadding', and 'textIndent'.
     spacing: PX_ENTRIES_1000,
-		container: {
+    container: {
       center: true,
       padding: '2rem',
       screens: {
         '2xl': '1400px',
       },
     },
-		fontWeight: {
-      light: "200",
-      semiLight: "300",
-      DEFAULT: "400",
-      semibold: "500",
-      bold: "600",
+    fontWeight: {
+      light: '200',
+      semiLight: '300',
+      DEFAULT: '400',
+      semibold: '500',
+      bold: '600',
     },
-		zIndex: {
-      first: "10",
-      second: "20",
-      third: "30",
-      modal: "9990",
-      toast: "9999",
+    zIndex: {
+      first: '10',
+      second: '20',
+      third: '30',
+      modal: '9990',
+      toast: '9999',
     },
-		screens: {
-      sm: { max: "768px" },
-      md: { max: "1200px" },
+    screens: {
+      sm: { max: '768px' },
+      md: { max: '1200px' },
       // => @media (max-width: 768px) { ... }
     },
     extend: {
-			fontFamily: {
+      fontFamily: {
         pretendard: ['Pretendard'],
       },
       colors: {
-				transparent: 'transparent',
+        transparent: 'transparent',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -99,12 +97,12 @@ const config: Config = {
         },
       },
       borderRadius: {
-				sm: 'calc(var(--radius) - 4px)',
+        sm: 'calc(var(--radius) - 4px)',
         md: 'calc(var(--radius) - 2px)',
         lg: 'var(--radius)',
-				full: '50%',
+        full: '50%',
       },
-			keyframes: {
+      keyframes: {
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -113,55 +111,58 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-				fadeIn: {
-          "0%": { opacity: '0' },
-          "100%": { opacity: '1' },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
         bounce: {
-          "0%": {
-            transform: "translateY(-12%)",
-            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          '0%': {
+            transform: 'translateY(-12%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
           },
-          "50%": {
-            transform: "translateY(0)",
-            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          '50%': {
+            transform: 'translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
           },
-          "100%": {
-            transform: "translateY(-12%)",
-            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          '100%': {
+            transform: 'translateY(-12%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
           },
         },
         ping: {
-          "50%": {
-            transform: "scale(2)",
+          '50%': {
+            transform: 'scale(2)',
             opacity: '0.7',
           },
-          "75%": {
-            transform: "scale(2)",
+          '75%': {
+            transform: 'scale(2)',
             opacity: '0.5',
           },
-          "100%": {
-            transform: "scale(2)",
+          '100%': {
+            transform: 'scale(2)',
             opacity: '0.3',
           },
         },
-				textLoop: {
+        textLoop: {
           '0%': { '-webkit-transform': 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' },
-          '100%': { '-webkit-transform': 'translate3d(-100%, 0, 0)', transform: 'translate3d(-100%, 0, 0)' },
+          '100%': {
+            '-webkit-transform': 'translate3d(-100%, 0, 0)',
+            transform: 'translate3d(-100%, 0, 0)',
+          },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-				'fadeIn': "fadeIn 2.5s linear",
-        'bounce': "bounce 1.2s linear infinite",
-        'ping': "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
-				'textLoop': 'textLoop 10s linear infinite',
+        fadeIn: 'fadeIn 2.5s linear',
+        bounce: 'bounce 1.2s linear infinite',
+        ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+        textLoop: 'textLoop 10s linear infinite',
       },
-			backdropBlur: {
+      backdropBlur: {
         'custom-blur': '2.5px',
       },
-			boxShadow: {
+      boxShadow: {
         top: '0 -4px 6px -1px rgba(0, 0, 0, 0.18)',
       },
     },
