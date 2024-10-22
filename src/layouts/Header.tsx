@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import IconGithub from '@/components/icon/Github';
+import IconLinkedin from '@/components/icon/LinkedIn';
 import Button from '@/components/ui/Button';
-import { githubURL } from '@/config/const';
+import { githubURL, linkedInURL } from '@/config/const';
 import { cn } from '@/lib/utils';
-import { Github } from 'lucide-react';
 
 const navList = [
   { name: 'SSONGQ', href: '/blog' },
@@ -42,8 +43,13 @@ export default function Header() {
 
         <div className='flex items-center gap-10'>
           <Button intent='ghost' size='icon'>
+            <Link href={linkedInURL} rel='noopener noreferrer' target='_blank'>
+              <IconLinkedin className='size-30' />
+            </Link>
+          </Button>
+          <Button intent='ghost' size='icon'>
             <Link href={githubURL} rel='noopener noreferrer' target='_blank'>
-              <Github className='size-30' />
+              <IconGithub className='size-30' />
             </Link>
           </Button>
         </div>
