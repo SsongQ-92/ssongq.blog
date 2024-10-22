@@ -1,4 +1,5 @@
 export const baseDomain = 'https://www.ssongq.dev';
+export const githubDomain = 'https://github.com/SsongQ-92';
 
 export const blogName = '송규경 개발 블로그';
 export const blogDesc =

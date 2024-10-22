@@ -11,7 +11,7 @@ const createPxEntries = (size: number) => {
 
 const PX_ENTRIES_10 = createPxEntries(10);
 const PX_ENTRIES_100 = createPxEntries(100);
-const PX_ENTRIES_1000 = createPxEntries(1000);
+const PX_ENTRIES_1200 = createPxEntries(1200);
 
 const config: Config = {
   darkMode: ['class'],
@@ -21,7 +21,7 @@ const config: Config = {
     borderWidth: PX_ENTRIES_10,
     fontSize: PX_ENTRIES_100,
     // spacing values are inherited by the 'padding', 'margin', 'height', 'maxHeight', 'flex-basis', 'gap', 'inset', 'space', 'translate', 'scrollMargin', 'scrollPadding', and 'textIndent'.
-    spacing: PX_ENTRIES_1000,
+    spacing: PX_ENTRIES_1200,
     container: {
       center: true,
       padding: '2rem',
@@ -29,17 +29,8 @@ const config: Config = {
         '2xl': '1400px',
       },
     },
-    fontWeight: {
-      light: '200',
-      semiLight: '300',
-      DEFAULT: '400',
-      semibold: '500',
-      bold: '600',
-    },
     zIndex: {
-      first: '10',
-      second: '20',
-      third: '30',
+      header: '40',
       modal: '9990',
       toast: '9999',
     },
@@ -100,7 +91,6 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
         md: 'calc(var(--radius) - 2px)',
         lg: 'var(--radius)',
-        full: '50%',
       },
       keyframes: {
         'accordion-down': {
