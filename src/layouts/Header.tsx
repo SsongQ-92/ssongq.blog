@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 const navList = [
-  { name: 'SSONGQ', href: '/' },
+  { name: 'SSONGQ', href: '/blog' },
   { name: 'ABOUT', href: '/about' },
   { name: 'TAGS', href: '/tags' },
 ];
@@ -18,9 +18,9 @@ export default function Header() {
   const isLocalePath = localePathList.some((path) => pathname.startsWith(path));
 
   return (
-    <nav className='flex-center border-b fixed z-header w-full bg-background shadow-sm print:hidden'>
+    <nav className='flex-center fixed z-header w-full border-b-1 bg-background shadow-sm print:hidden'>
       <div className='mt-4 flex h-64 w-full max-w-1200 items-center justify-between px-10'>
-        <div className='flex items-center font-medium'>
+        <div className='flex items-center gap-8 font-medium'>
           {navList.map((navItem) => (
             <Link
               key={navItem.name}

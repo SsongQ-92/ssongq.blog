@@ -1,5 +1,7 @@
 export const baseDomain = 'https://www.ssongq.dev';
 export const githubDomain = 'https://github.com/SsongQ-92';
+export const notFoundGifUrl =
+  'https://media.giphy.com/media/3ohs7KViF6rA4aan5u/giphy.gif?cid=ecf05e47xhk2cqh66hl2qlmrhfd23c3s0gt2dbkcxl9y6cdq&ep=v1_gifs_search&rid=giphy.gif&ct=g';
 
 export const blogName = '송규경 개발 블로그';
 export const blogDesc =
