@@ -108,6 +108,12 @@
     @apply bg-background text-foreground;
     font-family: 'Pretendard', sans-serif;
   }
+
+  ol,
+  ul,
+  li {
+    list-style: none;
+  }
 }
 
 @layer utilities {

@@ -24,7 +24,7 @@ export default function Footer() {
         </Link>
       </div>
       <div>
-        © 2024. <span className='font-semibold'>Ssong Q</span> all rights reserved.
+        © 2024. <span className='font-semibold'>SsongQ</span> all rights reserved.
       </div>
     </footer>
   );

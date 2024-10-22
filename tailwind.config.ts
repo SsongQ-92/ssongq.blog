@@ -34,11 +34,6 @@ const config: Config = {
       modal: '9990',
       toast: '9999',
     },
-    screens: {
-      sm: { max: '768px' },
-      md: { max: '1200px' },
-      // => @media (max-width: 768px) { ... }
-    },
     extend: {
       fontFamily: {
         pretendard: ['Pretendard'],
