@@ -110,3 +110,10 @@ export const asyncGetCategoryDetailList = async () => {
 
   return detailList;
 };
+
+export const asyncGetPostDetail = async (category: string, slug: string) => {
+  const filePath = `${POSTS_PATH}/${category}/${slug}/content.mdx`;
+  const filteredFilePath = path.sep === '\\' ? filePath.replaceAll('\\', '/') : filePath;
+  const detail = await asyncParsePost(filteredFilePath);
+  return detail;
+};

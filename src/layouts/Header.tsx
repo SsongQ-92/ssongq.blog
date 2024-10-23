@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 const navList = [
   { name: 'SSONGQ', href: '/blog' },
   { name: 'ABOUT', href: '/about' },
-  { name: 'TAGS', href: '/tags' },
+  { name: 'COLLECTION', href: '/collection' },
 ];
 
 const localePathList = ['/about'];

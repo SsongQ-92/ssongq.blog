@@ -35,6 +35,6 @@ export function generateMetadata({ params: { category } }: Props): Metadata {
   };
 }
 
-export default function CategoryPage({ params }: Props) {
-  return <PostListPage category={params.category} />;
+export default function CategoryPage({ params: { category } }: Props) {
+  return <PostListPage category={category} />;
 }

@@ -13,7 +13,7 @@ export default function CategoryList({
   currentCategory = 'all',
 }: CategoryListProps) {
   return (
-    <section className='mb-40'>
+    <section className='mb-25'>
       <ul className='flex gap-10'>
         <CategoryButton
           href='/blog'
