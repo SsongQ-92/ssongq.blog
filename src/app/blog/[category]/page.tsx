@@ -4,9 +4,9 @@ import PostListPage from '../(main)/_components/PostListPage';
 import { baseURL, blogName, blogThumbnailURL } from '@/config/const';
 import { getCategoryList, getCategoryPublicName } from '@/lib/post';
 
-type Props = {
+interface Props {
   params: { category: string };
-};
+}
 
 export const dynamicParams = false;
 
@@ -35,6 +35,6 @@ export function generateMetadata({ params: { category } }: Props): Metadata {
   };
 }
 
-export default async function CategoryPage({ params }: Props) {
+export default function CategoryPage({ params }: Props) {
   return <PostListPage category={params.category} />;
 }

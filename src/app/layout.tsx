@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang='ko' className='h-full scroll-my-80 scroll-smooth'>
       <body className='flex min-h-screen flex-col font-pretendard'>
         <Header />
-        <main className='flex-col-center mt-72 flex-shrink-0 flex-grow px-10'>{children}</main>
+        <main className='mt-72 flex flex-shrink-0 flex-grow px-10'>{children}</main>
         <Footer />
       </body>
     </html>

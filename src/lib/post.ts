@@ -25,13 +25,7 @@ const asyncParsePost = async (postPath: string): Promise<Post> => {
 // url, cg path, cg name, slug
 export const parsePostAbstract = (postPath: string) => {
   // category1/title1/content
-  const filePath =
-    path.sep === '\\'
-      ? postPath.replaceAll('\\', '/').replace(`${BASE_PATH}/`, '').replace('.mdx', '')
-      : postPath
-          .slice(postPath.indexOf(BASE_PATH))
-          .replace(`${BASE_PATH}/`, '')
-          .replace('.mdx', '');
+  const filePath = postPath.replace(`${BASE_PATH}/`, '').replace('.mdx', '');
 
   // category1, title1
   const [categoryPath, slug] = filePath.split('/');
@@ -63,7 +57,9 @@ export const getCategoryPublicName = (dirPath: string) =>
 export const getPostPaths = (category?: string) => {
   const folder = category || '**';
   const postPaths: string[] = sync(`${POSTS_PATH}/${folder}/**/*.mdx`);
-  return postPaths;
+  const filteredPostPaths =
+    path.sep === '\\' ? postPaths.map((postPath) => postPath.replaceAll('\\', '/')) : postPaths;
+  return filteredPostPaths;
 };
 
 // 모든 포스트 목록 조회. 블로그 메인 페이지에서 사용
@@ -87,7 +83,9 @@ export const asyncGetSortedPostList = async (category?: string) => {
 
 export const getCategoryList = () => {
   const cgPaths: string[] = sync(`${POSTS_PATH}/*`);
-  const cgList = cgPaths.map((path) => path.split('/').slice(-1)?.[0]);
+  const filteredCgPaths =
+    path.sep === '\\' ? cgPaths.map((cgPath) => cgPath.replaceAll('\\', '/')) : cgPaths;
+  const cgList = filteredCgPaths.map((path) => path.split('/').slice(-1)?.[0]);
   return cgList;
 };
 

@@ -6,7 +6,7 @@ import { githubURL, linkedInURL } from '@/config/const';
 
 export default function Footer() {
   return (
-    <footer className='flex-col-center mb-30 mt-20 gap-15 print:hidden'>
+    <footer className='flex-col-center mb-30 mt-50 gap-15 print:hidden'>
       <div className='flex justify-center gap-20'>
         <Link href={linkedInURL} rel='noopener noreferrer' target='_blank'>
           <IconLinkedin
