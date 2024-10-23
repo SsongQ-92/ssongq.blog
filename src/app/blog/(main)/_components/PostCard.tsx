@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Post } from '@/config/types';
-import { CalendarDays } from 'lucide-react';
+import { CalendarDays, Clock3 } from 'lucide-react';
 
 interface Props {
   post: Post;
@@ -33,6 +33,10 @@ export default function PostCard({ post }: Props) {
             <div className='flex items-center gap-4'>
               <CalendarDays className='w-22' />
               <span className='mt-2'>{post.dateString}</span>
+            </div>
+            <div className='flex items-center gap-4'>
+              <Clock3 className='w-22' />
+              <span className='mt-2'>{post.readingMinutes}분</span>
             </div>
           </div>
         </div>

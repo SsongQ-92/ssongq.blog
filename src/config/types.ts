@@ -10,6 +10,7 @@ export interface Post extends PostMetaData {
   url: string;
   slug: string;
   categoryPath: string;
-  content: string;
   categoryPublicName: string;
+  content: string;
+  readingMinutes: number;
 }

@@ -1,25 +1,25 @@
 import PostCard from './PostCard';
+import { getAllPostCount, getSortedPostList } from '@/lib/post';
 
-export default async function PostListPage() {
-  const todayDate = new Date();
+interface PostListProps {
+  category?: string;
+}
 
-  const mockPostData = {
-    title: '블로그 만들기',
-    date: todayDate,
-    dateString: todayDate.toDateString(),
-    thumbnail: '/blog_thumbnail.png',
-    desc: '드디어 블로그를 만든다',
-    url: '',
-    slug: '',
-    categoryPath: '',
-    content: '',
-    categoryPublicName: 'all',
-  };
+export default async function PostListPage({ category }: PostListProps) {
+  const postList = await getSortedPostList(category);
+  const allPostCount = await getAllPostCount();
+
+  console.log(postList);
 
   return (
-    <div className='w-[35%]'>
-      Post List 페이지 입니다
-      <PostCard post={mockPostData} />
-    </div>
+    <section className='mx-auto mt-40 w-full max-w-950 px-4'>
+      <section>
+        <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-30'>
+          {postList.map((post) => (
+            <PostCard key={post.url + post.date} post={post} />
+          ))}
+        </ul>
+      </section>
+    </section>
   );
 }

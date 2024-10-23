@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 
 import '../config/globals.css';
-import { baseDomain, blogDesc, blogName, blogThumbnailURL } from '@/config/const';
+import { baseURL, blogDesc, blogName, blogThumbnailURL } from '@/config/const';
 import Footer from '@/layouts/Footer';
 import Header from '@/layouts/Header';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseDomain),
+  metadataBase: new URL(baseURL),
   title: blogName,
   description: blogDesc,
   openGraph: {
