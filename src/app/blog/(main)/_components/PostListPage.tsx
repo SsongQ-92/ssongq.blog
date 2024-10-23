@@ -17,6 +17,11 @@ export default async function PostListPage({ category }: PostListProps) {
 
   return (
     <section className='mx-auto mt-40 w-full max-w-950 px-4'>
+      <CategoryList
+        allPostCount={allPostCount}
+        categoryList={categoryList}
+        currentCategory={category}
+      />
       <section>
         <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-30'>
           {postList.map((post) => (
