@@ -9,8 +9,6 @@ export default async function PostListPage({ category }: PostListProps) {
   const postList = await asyncGetSortedPostList(category);
   const allPostCount = await asyncGetAllPostCount();
 
-  console.log(postList);
-
   return (
     <section className='mx-auto mt-40 w-full max-w-950 px-4'>
       <section>
