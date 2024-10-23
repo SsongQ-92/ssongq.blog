@@ -12,9 +12,9 @@ const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 type PostMetaDataWithoutDateString = Omit<PostMetaData, 'dateString'>;
 
 // MDX 파일 파싱 : abstract / detail 구분
-const parsePost = async (postPath: string): Promise<Post> => {
+const asyncParsePost = async (postPath: string): Promise<Post> => {
   const postAbstract = parsePostAbstract(postPath);
-  const postDetail = await parsePostDetail(postPath);
+  const postDetail = await asyncParsePostDetail(postPath);
   return {
     ...postAbstract,
     ...postDetail,
@@ -39,7 +39,7 @@ export const parsePostAbstract = (postPath: string) => {
 };
 
 // MDX detail
-const parsePostDetail = async (postPath: string) => {
+const asyncParsePostDetail = async (postPath: string) => {
   const file = fs.readFileSync(postPath, 'utf8');
   const { data, content } = matter(file);
   const grayMatter = data as PostMetaDataWithoutDateString;
@@ -63,20 +63,20 @@ export const getPostPaths = (category?: string) => {
 };
 
 // 모든 포스트 목록 조회. 블로그 메인 페이지에서 사용
-export const getPostList = async (category?: string): Promise<Post[]> => {
+export const asyncGetPostList = async (category?: string): Promise<Post[]> => {
   const postPaths = getPostPaths(category);
-  const postList = await Promise.all(postPaths.map((postPath) => parsePost(postPath)));
+  const postList = await Promise.all(postPaths.map((postPath) => asyncParsePost(postPath)));
   return postList;
 };
 
-export const getAllPostCount = async () => (await getPostList()).length;
+export const asyncGetAllPostCount = async () => (await asyncGetPostList()).length;
 
 // post를 날짜 최신순으로 정렬
 const sortPostList = (PostList: Post[]) => {
   return PostList.sort((a, b) => (a.date > b.date ? -1 : 1));
 };
 
-export const getSortedPostList = async (category?: string) => {
-  const postList = await getPostList(category);
+export const asyncGetSortedPostList = async (category?: string) => {
+  const postList = await asyncGetPostList(category);
   return sortPostList(postList);
 };

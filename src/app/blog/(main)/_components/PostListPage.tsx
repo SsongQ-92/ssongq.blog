@@ -1,13 +1,13 @@
 import PostCard from './PostCard';
-import { getAllPostCount, getSortedPostList } from '@/lib/post';
+import { asyncGetAllPostCount, asyncGetSortedPostList } from '@/lib/post';
 
 interface PostListProps {
   category?: string;
 }
 
 export default async function PostListPage({ category }: PostListProps) {
-  const postList = await getSortedPostList(category);
-  const allPostCount = await getAllPostCount();
+  const postList = await asyncGetSortedPostList(category);
+  const allPostCount = await asyncGetAllPostCount();
 
   console.log(postList);
 
