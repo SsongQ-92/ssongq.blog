@@ -14,3 +14,9 @@ export interface Post extends PostMetaData {
   content: string;
   readingMinutes: number;
 }
+
+export interface CategoryDetail {
+  dirName: string;
+  publicName: string;
+  count: number;
+}
