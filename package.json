@@ -11,6 +11,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@fec/remark-a11y-emoji": "^4.0.2",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^14.2.15",
@@ -24,11 +25,15 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.453.0",
     "next": "14.2.15",
+    "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "react": "^18",
     "react-dom": "^18",
     "reading-time": "^1.5.0",
+    "rehype-pretty-code": "^0.14.0",
+    "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.0",
     "remark-toc": "^9.0.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"

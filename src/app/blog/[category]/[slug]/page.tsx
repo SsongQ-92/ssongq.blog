@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import PostBody from '../../_components/post_detail/PostBody';
 import PostHeader from '../../_components/post_detail/PostHeader';
 import { baseURL } from '@/config/const';
 import { asyncGetPostDetail, getPostPaths, parsePostAbstract } from '@/lib/post';
@@ -50,6 +51,7 @@ export default async function PostDetailPage({ params: { category, slug } }: Pro
   return (
     <div className='prose mx-auto w-full max-w-750 px-20 dark:prose-invert sm:px-25'>
       <PostHeader post={post} />
+      <PostBody post={post} />
     </div>
   );
 }
