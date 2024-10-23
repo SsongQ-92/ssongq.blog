@@ -1,4 +1,4 @@
-import { Post, PostMetaData } from '@/config/types';
+import { CategoryDetail, Post, PostMetaData } from '@/config/types';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import { sync } from 'glob';
@@ -83,4 +83,32 @@ const sortPostList = (PostList: Post[]) => {
 export const asyncGetSortedPostList = async (category?: string) => {
   const postList = await asyncGetPostList(category);
   return sortPostList(postList);
+};
+
+export const getCategoryList = () => {
+  const cgPaths: string[] = sync(`${POSTS_PATH}/*`);
+  const cgList = cgPaths.map((path) => path.split('/').slice(-1)?.[0]);
+  return cgList;
+};
+
+export const asyncGetCategoryDetailList = async () => {
+  const postList = await asyncGetPostList();
+  const result: { [key: string]: number } = {};
+
+  for (const post of postList) {
+    const category = post.categoryPath;
+    if (result[category]) {
+      result[category] += 1;
+    } else {
+      result[category] = 1;
+    }
+  }
+
+  const detailList: CategoryDetail[] = Object.entries(result).map(([category, count]) => ({
+    dirName: category,
+    publicName: getCategoryPublicName(category),
+    count,
+  }));
+
+  return detailList;
 };

@@ -1,5 +1,10 @@
+import CategoryList from './CategoryList';
 import PostCard from './PostCard';
-import { asyncGetAllPostCount, asyncGetSortedPostList } from '@/lib/post';
+import {
+  asyncGetAllPostCount,
+  asyncGetCategoryDetailList,
+  asyncGetSortedPostList,
+} from '@/lib/post';
 
 interface PostListProps {
   category?: string;
@@ -8,6 +13,7 @@ interface PostListProps {
 export default async function PostListPage({ category }: PostListProps) {
   const postList = await asyncGetSortedPostList(category);
   const allPostCount = await asyncGetAllPostCount();
+  const categoryList = await asyncGetCategoryDetailList();
 
   return (
     <section className='mx-auto mt-40 w-full max-w-950 px-4'>
