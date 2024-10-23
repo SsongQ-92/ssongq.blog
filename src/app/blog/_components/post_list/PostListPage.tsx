@@ -23,7 +23,7 @@ export default async function PostListPage({ category }: PostListProps) {
         currentCategory={category}
       />
       <section>
-        <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-30'>
+        <ul className='grid grid-cols-1 gap-14 sm:grid-cols-2 lg:gap-30'>
           {postList.map((post) => (
             <PostCard key={post.url + post.date} post={post} />
           ))}

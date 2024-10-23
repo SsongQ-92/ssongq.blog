@@ -14,7 +14,7 @@ export default function PostHeader({ post }: Props) {
       <div className='mb-12 text-18'>
         <Link
           href={`/blog/${post.categoryPath}`}
-          className='font-semibold text-violet-500 no-underline underline-offset-4 hover:underline'
+          className='font-semibold text-sky-600 no-underline underline-offset-4 hover:underline'
         >
           {post.categoryPublicName}
         </Link>

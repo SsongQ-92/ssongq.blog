@@ -5,7 +5,7 @@ interface ImageProps {
   height: number;
 }
 
-export const Image = ({ src, alt, width, height }: ImageProps) => {
+export default function Image({ src, alt, width, height }: ImageProps) {
   return (
     <>
       <img
@@ -22,4 +22,4 @@ export const Image = ({ src, alt, width, height }: ImageProps) => {
       )}
     </>
   );
-};
+}

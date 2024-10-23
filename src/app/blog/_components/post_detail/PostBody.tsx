@@ -31,7 +31,7 @@ export default function PostBody({ post }: Props) {
               // @ts-ignore
               rehypePrettyCode,
               {
-                theme: { dark: 'github-dark-dimmed', light: 'github-light' },
+                theme: 'github-light',
               },
             ],
           ],

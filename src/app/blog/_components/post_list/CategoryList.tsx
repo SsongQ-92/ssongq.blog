@@ -14,7 +14,7 @@ export default function CategoryList({
 }: CategoryListProps) {
   return (
     <section className='mb-25'>
-      <ul className='flex gap-10'>
+      <ul className='flex flex-wrap gap-10'>
         <CategoryButton
           href='/blog'
           isCurrent={currentCategory === 'all'}
