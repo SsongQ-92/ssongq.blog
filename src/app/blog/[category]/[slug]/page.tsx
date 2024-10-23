@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import PostHeader from '../../_components/post_detail/PostHeader';
 import { baseURL } from '@/config/const';
 import { asyncGetPostDetail, getPostPaths, parsePostAbstract } from '@/lib/post';
 
@@ -43,6 +44,12 @@ export async function generateMetadata({ params: { category, slug } }: Props): P
   };
 }
 
-export default function PostDetailPage({ params: { category, slug } }: Props) {
-  return <div></div>;
+export default async function PostDetailPage({ params: { category, slug } }: Props) {
+  const post = await asyncGetPostDetail(category, slug);
+
+  return (
+    <div className='prose mx-auto w-full max-w-750 px-20 dark:prose-invert sm:px-25'>
+      <PostHeader post={post} />
+    </div>
+  );
 }

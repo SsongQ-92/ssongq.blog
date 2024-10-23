@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <nav className='flex-center fixed z-header w-full border-b-1 bg-background shadow-sm print:hidden'>
-      <div className='mt-4 flex h-64 w-full max-w-1200 items-center justify-between px-10'>
+      <div className='mt-4 flex h-64 w-full max-w-1200 items-center justify-between px-15'>
         <div className='flex items-center gap-8 font-medium'>
           {navList.map((navItem) => (
             <Link

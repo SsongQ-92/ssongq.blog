@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import PostListPage from '../_components/PostListPage';
+import PostListPage from '../_components/post_list/PostListPage';
 import { baseURL, blogName, blogThumbnailURL } from '@/config/const';
 import { getCategoryList, getCategoryPublicName } from '@/lib/post';
 

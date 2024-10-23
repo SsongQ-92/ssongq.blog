@@ -25,7 +25,10 @@ const asyncParsePost = async (postPath: string): Promise<Post> => {
 // url, cg path, cg name, slug
 export const parsePostAbstract = (postPath: string) => {
   // category1/title1/content
-  const filePath = postPath.replace(`${BASE_PATH}/`, '').replace('.mdx', '');
+  const filePath = postPath
+    .slice(postPath.indexOf(BASE_PATH))
+    .replace(`${BASE_PATH}/`, '')
+    .replace('.mdx', '');
 
   // category1, title1
   const [categoryPath, slug] = filePath.split('/');
