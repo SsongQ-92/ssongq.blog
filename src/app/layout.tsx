@@ -4,6 +4,8 @@ import '../config/globals.css';
 import { baseURL, blogDesc, blogName, blogThumbnailURL } from '@/config/const';
 import Footer from '@/layouts/Footer';
 import Header from '@/layouts/Header';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseURL),
@@ -35,6 +37,8 @@ export default function RootLayout({
         <Header />
         <main className='mt-72 flex flex-shrink-0 flex-grow px-10'>{children}</main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
