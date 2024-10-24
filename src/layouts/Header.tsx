@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 const navList = [
   { name: 'SSONGQ', href: '/blog' },
   { name: 'ABOUT', href: '/about' },
-  { name: 'COLLECTION', href: '/collection' },
+  { name: 'TAGS', href: '/tags' },
 ];
 
 const localePathList = ['/about'];
@@ -23,8 +23,8 @@ export default function Header() {
 
   return (
     <nav className='flex-center fixed z-header w-full border-b-1 bg-background shadow-sm print:hidden'>
-      <div className='mt-4 flex h-64 w-full max-w-1200 items-center justify-between px-15'>
-        <div className='flex items-center gap-8 font-medium'>
+      <div className='mt-4 flex h-64 w-full max-w-1200 items-center justify-between px-20 sm:px-15'>
+        <div className='flex items-center gap-2 font-medium sm:gap-8'>
           {navList.map((navItem) => (
             <Link
               key={navItem.name}
@@ -32,8 +32,8 @@ export default function Header() {
               className={cn(
                 'rounded-full px-12 py-4 text-center transition-colors',
                 pathname?.startsWith(navItem.href)
-                  ? 'bg-muted text-14 font-medium text-primary'
-                  : 'text-14 text-muted-foreground hover:bg-accent hover:text-primary'
+                  ? 'bg-muted text-12 font-medium text-primary sm:text-14 md:text-16'
+                  : 'text-12 text-muted-foreground hover:bg-accent hover:text-primary sm:text-14 md:text-16'
               )}
             >
               {navItem.name}
@@ -41,15 +41,15 @@ export default function Header() {
           ))}
         </div>
 
-        <div className='flex items-center gap-10'>
+        <div className='flex items-center gap-4 sm:gap-10'>
           <Button intent='ghost' size='icon'>
             <Link href={linkedInURL} rel='noopener noreferrer' target='_blank'>
-              <IconLinkedin className='size-30' />
+              <IconLinkedin className='size-22 sm:size-30' />
             </Link>
           </Button>
           <Button intent='ghost' size='icon'>
             <Link href={githubURL} rel='noopener noreferrer' target='_blank'>
-              <IconGithub className='size-30' />
+              <IconGithub className='size-22 sm:size-30' />
             </Link>
           </Button>
         </div>

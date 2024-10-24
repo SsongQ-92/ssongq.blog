@@ -16,14 +16,14 @@ export default async function PostListPage({ category }: PostListProps) {
   const categoryList = await asyncGetCategoryDetailList();
 
   return (
-    <section className='mx-auto mt-35 w-full max-w-1000 px-4'>
+    <section className='mx-auto mt-35 w-full max-w-1000 px-12 md:px-6'>
       <CategoryList
         allPostCount={allPostCount}
         categoryList={categoryList}
         currentCategory={category}
       />
       <section>
-        <ul className='grid grid-cols-1 gap-14 md:grid-cols-2 lg:gap-30'>
+        <ul className='grid grid-cols-1 gap-14 sm:grid-cols-2 lg:gap-30'>
           {postList.map((post) => (
             <PostCard key={post.url + post.date} post={post} />
           ))}
