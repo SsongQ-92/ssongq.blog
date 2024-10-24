@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface ImageProps {
   src: string;
   alt: string;
@@ -5,15 +7,16 @@ interface ImageProps {
   height: number;
 }
 
-export default function Image({ src, alt, width, height }: ImageProps) {
+export default function NextImage({ src, alt, width, height }: ImageProps) {
   return (
     <>
-      <img
+      <Image
         src={src}
         alt={alt}
         width={width}
         height={height}
-        className='mx-auto mb-0 mt-35 rounded-md'
+        priority
+        className='mx-auto mb-0 mt-35 h-auto w-auto rounded-md'
       />
       {alt !== '' && (
         <span className='mb-30 mt-8 block w-full text-center text-14 text-gray-500 dark:text-gray-400'>

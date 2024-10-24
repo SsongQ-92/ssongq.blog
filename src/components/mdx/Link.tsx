@@ -1,10 +1,10 @@
 import { PropsWithChildren } from 'react';
 
-import { LinkProps } from 'next/link';
+import Link, { LinkProps } from 'next/link';
 
 export default function ExternalLink({ children, href, ...props }: PropsWithChildren<LinkProps>) {
   return (
-    <a
+    <Link
       href={href.toString() || ''}
       className='break-words text-sky-600 no-underline underline-offset-4 hover:underline'
       rel='noopener noreferrer'
@@ -12,6 +12,6 @@ export default function ExternalLink({ children, href, ...props }: PropsWithChil
       {...props}
     >
       {children}
-    </a>
+    </Link>
   );
 }

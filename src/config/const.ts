@@ -1,4 +1,4 @@
-export const baseURL = 'https://www.ssongq.dev';
+export const baseURL = 'https://www.ssongq.vercel.app';
 
 export const blogName = 'SsongQ 개발 블로그';
 export const blogDesc =
