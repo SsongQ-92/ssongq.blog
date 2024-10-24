@@ -13,7 +13,7 @@ export default function CategoryButton({ isCurrent, displayName, href, count }: 
   return (
     <li>
       <Button intent={isCurrent ? 'default' : 'ghost'} size='sm'>
-        <Link href={href}>
+        <Link href={href} className='text-14 sm:text-16'>
           {displayName} ({count})
         </Link>
       </Button>
