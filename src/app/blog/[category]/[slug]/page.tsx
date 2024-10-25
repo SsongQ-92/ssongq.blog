@@ -49,7 +49,7 @@ export default async function PostDetailPage({ params: { category, slug } }: Pro
   const post = await asyncGetPostDetail(category, slug);
 
   return (
-    <div className='prose mx-auto w-full max-w-750 px-20 sm:px-25'>
+    <div className='prose mx-auto w-full max-w-850 px-20 sm:px-25'>
       <PostHeader post={post} />
       <PostBody post={post} />
     </div>

@@ -32,8 +32,8 @@ export default function Header() {
               className={cn(
                 'rounded-full px-12 py-4 text-center transition-colors',
                 pathname?.startsWith(navItem.href)
-                  ? 'bg-muted text-12 font-medium text-primary sm:text-14 md:text-16'
-                  : 'text-12 text-muted-foreground hover:bg-accent hover:text-primary sm:text-14 md:text-16'
+                  ? 'bg-muted font-medium text-primary text-12 sm:text-14 md:text-16'
+                  : 'text-muted-foreground hover:bg-accent hover:text-primary text-12 sm:text-14 md:text-16'
               )}
             >
               {navItem.name}
