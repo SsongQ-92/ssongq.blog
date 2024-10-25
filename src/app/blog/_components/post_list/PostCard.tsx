@@ -28,7 +28,7 @@ export default function PostCard({ post }: Props) {
               {post.categoryPublicName}
             </div>
             <h2 className='mt-4 text-18 font-bold sm:mb-12 sm:text-20 md:text-22'>{post.title}</h2>
-            <h4 className='mb-12 mt-[-6px] text-gray-500 text-12'>{post.desc}</h4>
+            <h4 className='mb-4 sm:mb-12 mt-2 sm:mt-[-8px] text-gray-500 text-12'>{post.desc}</h4>
           </div>
           <div className='flex justify-between text-12 text-gray-500 dark:text-gray-400 sm:text-14'>
             <div className='flex items-center gap-4'>
