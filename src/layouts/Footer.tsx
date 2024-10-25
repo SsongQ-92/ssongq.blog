@@ -16,7 +16,7 @@ export default function Footer() {
         </Link>
       </div>
       <div className='text-12 sm:text-16'>
-        © 2024. <span className='font-semibold'>SsongQ</span> all rights reserved.
+        © 2024 | <span className='font-semibold'>SsongQ's Blog</span> all rights reserved.
       </div>
     </footer>
   );

@@ -1,21 +1,31 @@
 ---
 title: "리액트에서의 렌더링이란 무엇일까?"
 date: 2024-10-25
-desc:
+desc: 이 렌더링이 니 렌더링이냐
 thumbnail: /posts/chitchat/first_post/thumbnail.png
 ---
 
-지금도 계속해서 리액트를 공부하고 있고 어느 날은 아예 [몰랐던 내용](#몰랐던-내용)을 접하기도
+나는 프론트엔드 개발자가 되기 위해 계속해서 리액트와 친해지고 있다. 코드 작업을 하는 중에도 친절한 공식 문서를 참고하기도 하고 지하철에서는 내가 약한 부분을 보충하고자 이런저런 정보를 찾아보기도 한다. 어느 날은 [몰랐던 내용](#몰랐던-내용)을 접하기도 한다.
+
+> 그렇기에 글을 쓰는 것이 두렵지만, 내가 아는 선에서 최대한 기록해보고자 한다. 이 또한, 공부니까.
+
+리액트 라이브러리를 처음 만나고 공부할 때, 가장 헷갈리고 나에게 혼동을 주었던 단어가 `렌더링(rendering)`이었다. 리액트를 접하기 전까지 렌더링이라는 단어는 DOM(Document Object Model; 웹 페이지에 대한 인터페이스)과 CSSOM(CSS Object Model)로 화면을 새롭게 그리는 것에 지나지 않았다. 
 
 
 ---
 
 ### 몰랐던 내용
 
+> 그것은 바로 <Link href="https://ko.react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback">ref 콜백</Link>
+
 얼마 전 `Notion-like editor`를 만들 때 였다. User가 여러 textarea 태그 중 하나에 focusing 할 때,  `currentFocusLine`이라는 상태를 user가 focusing 하는 태그의 정보로 바꿔주고 싶었다.
 
+해당 작업을 하기 위해서는 결국 현재 focus event가 발생한 target 태그와 태그들의 정보를 참조하는 객체 중 일치하는 것을 찾아내어 특정 값을 뽑아낼 필요가 있었다. 이를 위해서 리액트 공식 문서 중 `ref`를 팠는데, 지금껏 몰랐던 내용을 알게 되었다.
+
+위 콜아웃에 언급한 `ref 콜백`이다. ref 콜백을 활용하면 ref 어트리뷰트에 함수를 전달하여 node 인수를 활용할 수 있었다. 해당 node 인수를 value로 갖고 특정 값을 key로 가지게 하는 Map 객체를 만들면 내가 원하는 로직을 구성할 수 있었다.
+
 ```js
-  // currentFocusLine 선언
+  // currentFocusLine state 초기화
   const [currentFocusLine, setCurrentFocusLine] = useState(() => {
     if (mode === "create") {
       return { key: initialKey, index: 0 };
@@ -24,6 +34,60 @@ thumbnail: /posts/chitchat/first_post/thumbnail.png
     }
   });
 
+  /* 어쩌구 저쩌구 */
+
+  // Focus event handler
+  const handleTextareaFocus = (e) => {
+    const map = getMap(lineCollectionRef);
+    let currentKey;
+    let currentIndex;
+
+    for (const value of map) {
+      const elementKey = value[0];
+      const element = value[1];
+
+      if (element === e.target) {
+        currentKey = elementKey;
+        break;
+      }
+    }
+
+    for (let i = 0; i < lineCollection.length; i++) {
+      if (lineCollection[i].key === currentKey) {
+        currentIndex = lineCollection[i].index;
+        break;
+      }
+    }
+
+    setCurrentFocusLine((prev) => ({ ...prev, key: currentKey, index: currentIndex }));
+  }
+
+  return (
+    {/* 어쩌구 저쩌구 */}
+    return (
+      <div key={key} className="relative">
+        <textarea ref={(node) => {
+          const map = getMap(lineCollectionRef);
+
+          if (node) {
+            map.set(key, node);
+          } else {
+            map.delete(key);
+          }
+        }} value={value}
+    )
+  )
+```
+
+```js
+// getMap util 함수
+const getMap = (ref) => {
+  if (!ref.current) {
+    ref.current = new Map();
+  }
+
+  return ref.current;
+}
 ```
 
 ---
@@ -32,3 +96,5 @@ thumbnail: /posts/chitchat/first_post/thumbnail.png
 
 - 모던 리액트 Deep Dive. 김용찬(2024). 위키북스
 - [React 공식 문서](https://react.dev/learn/render-and-commit)
+- [Constructing the Object Model written by Ilya Grigorik](https://web.dev/articles/critical-rendering-path/constructing-the-object-model)
+- [Understand How Rendering Works in React written by Ifeoma Imoh](https://www.telerik.com/blogs/understand-how-rendering-works-react)
