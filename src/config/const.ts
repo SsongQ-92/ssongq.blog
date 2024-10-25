@@ -8,3 +8,4 @@ export const blogThumbnailURL = `${baseURL}/blog_thumbnail.png`;
 export const notFoundGifURL = '/not_found_gif.gif';
 export const githubURL = 'https://github.com/SsongQ-92';
 export const linkedInURL = 'https://www.linkedin.com/in/kyukyoungsong/';
+export const myEmail = 'ssongq92@gmail.com';

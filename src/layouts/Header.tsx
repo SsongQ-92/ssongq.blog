@@ -41,7 +41,7 @@ export default function Header() {
           ))}
         </div>
 
-        <div className='flex items-center gap-4 sm:gap-10'>
+        <div className='flex items-center gap-2 sm:gap-10'>
           <Button intent='ghost' size='icon'>
             <Link href={linkedInURL} rel='noopener noreferrer' target='_blank'>
               <IconLinkedin className='size-22 sm:size-30' />
