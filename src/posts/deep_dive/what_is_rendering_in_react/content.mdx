@@ -9,8 +9,15 @@ thumbnail: /posts/chitchat/first_post/thumbnail.png
 
 > 그렇기에 글을 쓰는 것이 두렵지만, 내가 아는 선에서 최대한 기록해보고자 한다. 이 또한, 공부니까.
 
-리액트 라이브러리를 처음 만나고 공부할 때, 가장 헷갈리고 나에게 혼동을 주었던 단어가 `렌더링(rendering)`이었다. 리액트를 접하기 전까지 렌더링이라는 단어는 DOM(Document Object Model; 웹 페이지에 대한 인터페이스)과 CSSOM(CSS Object Model)로 화면을 새롭게 그리는 것에 지나지 않았다. 
+리액트 라이브러리를 처음 만나고 공부할 때, 가장 헷갈리고 나에게 혼동을 주었던 단어가 `렌더링(rendering)`이었다. 리액트를 접하기 전까지 렌더링이라는 단어는 DOM(Document Object Model; 웹 페이지에 대한 인터페이스)과 CSSOM(CSS Object Model)이 합쳐지며 Render tree를 형성하고 화면을 새롭게 그리는 것에 지나지 않았기 때문이다. '브라우저는 렌더 트리를 렌더링할 때 먼저 DOM 트리의 루트부터 시작하여 보이는 각 노드를 렌더링합니다' 할 때의 그 렌더링 말이다.
 
+![Combined DOM and CSSOM(Image source: web-dev)](/posts/deep_dive/what_is_rendering_in_react/1.png)
+
+![Image source: naver-dictionary](/posts/deep_dive/what_is_rendering_in_react/2.png)
+
+
+
+## 리액트에서의 렌더링
 
 ---
 
@@ -95,6 +102,7 @@ const getMap = (ref) => {
 ## Reference
 
 - 모던 리액트 Deep Dive. 김용찬(2024). 위키북스
-- [React 공식 문서](https://react.dev/learn/render-and-commit)
-- [Constructing the Object Model written by Ilya Grigorik](https://web.dev/articles/critical-rendering-path/constructing-the-object-model)
+- [렌더링 그리고 커밋 - React 공식 문서](https://react.dev/learn/render-and-commit)
+- [Render-tree Construction, Layout, and Paint by Ilya Grigorik](https://web.dev/articles/critical-rendering-path/render-tree-construction)
 - [Understand How Rendering Works in React written by Ifeoma Imoh](https://www.telerik.com/blogs/understand-how-rendering-works-react)
+- [An Introduction to React Fiber - The Algorithm Behind React written by Deepak Biradar](https://www.velotio.com/engineering-blog/react-fiber-algorithm)

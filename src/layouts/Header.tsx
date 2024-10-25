@@ -22,7 +22,7 @@ export default function Header() {
   const isLocalePath = localePathList.some((path) => pathname.startsWith(path));
 
   return (
-    <nav className='flex-center fixed z-header w-full border-b-1 bg-background shadow-sm print:hidden'>
+    <nav className='flex-center fixed z-header w-full border-b-1 bg-white/30 shadow-sm print:hidden backdrop-blur-lg'>
       <div className='mt-4 flex h-64 w-full max-w-1150 items-center justify-between px-20 sm:px-15'>
         <div className='flex items-center gap-2 font-medium sm:gap-8'>
           {navList.map((navItem) => (
