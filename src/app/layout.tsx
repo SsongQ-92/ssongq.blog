@@ -4,6 +4,7 @@ import '../config/globals.css';
 import { baseURL, blogDesc, blogName, blogThumbnailURL } from '@/config/const';
 import Footer from '@/layouts/Footer';
 import Header from '@/layouts/Header';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -45,6 +46,8 @@ export default function RootLayout({
         <Footer />
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics gaId='G-4C70XPBHSV' />
+        <GoogleTagManager gtmId='GTM-MKT3WNQ4' />
       </body>
     </html>
   );
