@@ -1,3 +1,4 @@
+import { baseURL } from '@/config/const';
 import { CategoryDetail, Post, PostMetaData } from '@/config/types';
 import dayjs from 'dayjs';
 import fs from 'fs';
@@ -121,4 +122,11 @@ export const asyncGetPostDetail = async (category: string, slug: string) => {
   return detail;
 };
 
-export const asyncGetPostListSitemap = async () => {};
+export const asyncGetPostListSitemap = async () => {
+  const postList = await asyncGetPostList();
+  const sitemapPostList = postList.map(({ url }) => ({
+    lastModified: new Date(),
+    url: `${baseURL}${url}`,
+  }));
+  return sitemapPostList;
+};
