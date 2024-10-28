@@ -27,18 +27,17 @@ export default function PostCard({ post }: Props) {
             <div className='text-16 font-medium text-sky-600 sm:text-18 lg:text-20'>
               {post.categoryPublicName}
             </div>
-            <h2 className='mb-8 mt-4 text-18 font-bold sm:mb-12 sm:text-20 md:text-22'>
-              {post.title}
-            </h2>
+            <h2 className='mt-4 text-18 font-bold sm:mb-12 sm:text-20 md:text-22'>{post.title}</h2>
+            <h4 className='mb-4 sm:mb-12 mt-2 sm:mt-[-8px] text-gray-500 text-12'>{post.desc}</h4>
           </div>
-          <div className='flex justify-between text-13 text-gray-500 dark:text-gray-400 sm:text-15'>
+          <div className='flex justify-between text-12 text-gray-500 dark:text-gray-400 sm:text-14'>
             <div className='flex items-center gap-4'>
               <CalendarDays className='w-17 sm:w-22' />
               <span className='mt-2'>{post.dateString}</span>
             </div>
             <div className='flex items-center gap-4'>
               <Clock3 className='w-17 sm:w-22' />
-              <span className='mt-2'>{post.readingMinutes}분</span>
+              <span className='mt-2'>{post.readingMinutes} min read</span>
             </div>
           </div>
         </div>

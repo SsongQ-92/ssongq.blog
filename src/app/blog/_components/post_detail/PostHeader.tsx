@@ -26,7 +26,7 @@ export default function PostHeader({ post }: Props) {
         </div>
         <div className='flex items-center gap-5'>
           <Clock3 className='w-18' />
-          <span className='mt-2'>{post.readingMinutes}분</span>
+          <span className='mt-2'>{post.readingMinutes} min read</span>
         </div>
       </div>
       <hr className='mt-20' />

@@ -1,0 +1,233 @@
+---
+title: '리액트에서의 렌더링이란 무엇일까?'
+date: 2024-10-29
+desc: 이 렌더링이 니 렌더링이냐 리-렌더링이냐
+thumbnail: /posts/deep_dive/what_is_rendering_in_react/thumbnail.png
+---
+
+나는 프론트엔드 개발자가 되기 위해 계속해서 리액트와 친해지고 있다. 코드 작업을 하는 중에 때때로 [리액트 공식 문서](#친절한-리액트-공식-문서)를 참고하기도 하고 지하철에서는 내가 약한 부분을 보충하고자 이런저런 정보를 찾아보기도 한다. 어느 날은 아예 [몰랐던 내용](#몰랐던-내용)을 새롭게 접하기도 한다.
+
+리액트 라이브러리를 처음 만나고 공부할 때, 가장 헷갈리고 나에게 혼동을 주었던 단어가 <b>`렌더링(rendering)`</b>이었다. 리액트를 접하기 전까지 렌더링이라는 단어는 나에게, DOM(Document Object Model; 웹 페이지에 대한 인터페이스)과 CSSOM(CSS Object Model)이 합쳐지며 Render tree를 형성하고 <b>화면을 새롭게 그리는 것</b>에 지나지 않았기 때문이다. 브라우저의 렌더링, 즉 '브라우저는 렌더 트리를 렌더링할 때 먼저 DOM 트리의 루트부터 시작하여 보이는 각 노드를 렌더링합니다' 할 때의 그 렌더링 말이다.
+
+![Combined DOM and CSSOM(Image source: web-dev)](/posts/deep_dive/what_is_rendering_in_react/1.png)
+
+![Image source: naver-dictionary](/posts/deep_dive/what_is_rendering_in_react/2.png)
+
+## 리액트에서의 렌더링
+
+리액트 공식문서의 렌더링 섹션에서 렌더링에 대해 설명하는 첫 문장이다.
+
+<Callout type='info'>
+  Before your components are displayed on screen, they must be rendered by React.
+  컴포넌트가 화면에 표시되기 전에, React에 의해 렌더링되어야 합니다.
+</Callout>
+
+아마 리액트에서의 렌더링을 모른 채로 이 문장을 본다면 이해가 잘 되지 않는다. 렌더링의 뜻이 화면을 그리는 것인데, 화면을 그리기 전에 렌더링이 되어야 한다니? 하지만, 이 혼란스러운 감정을 이겨내고 해당 페이지를 조금 더 읽다보면 렌더링을 명확히 설명하는 문장을 발견할 수 있다.
+
+<Callout type='info'>
+  After you trigger a render, React calls your components to figure out what to display on screen.
+  렌더링을 트리거한 후 React는 컴포넌트를 호출하여 화면에 표시할 내용을 파악합니다.
+  <b>“Rendering” is React calling your components.</b>
+  <b>"렌더링"은 React가 컴포넌트를 호출하는 것입니다.</b>
+</Callout>
+
+그렇다면 호출한다는 것은 어떤 의미일까? 그 전에 우리는 무엇이 렌더링을 트리거하는지(발생시키는지)를 알아야 한다.
+
+### 렌더링을 트리거하는 2가지 경우
+
+1. 최초 렌더링(DOM에 최초 마운트)
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from ''./components/App.jsx';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+)
+```
+2. 컴포넌트 내부의 state나 부모나 조상으로부터 전달 받은 props가 업데이트될 때
+
+렌더링은 위 2가지 경우에 의해 트리거된다. 공식 문서는 추가적으로 설명한다. "렌더링"이 트리거되어 호출된 함수형 컴포넌트가 return 하는 또 다른 컴포넌트가 있을 경우, 해당 컴포넌트를 그 다음에 렌더링하는 식으로 재귀적인 프로세스를 수행한다고 말이다. 이 과정은 중첩되는 컴포넌트가 더 이상 존재하지 않고 정확히 UI를 <b>`계산`</b>할 때까지 계속되는데, 이것은 우리가 리액트를 배우며 귀가 닳도록 듣는 부모 컴포넌트가 렌더링이 되면 자식 컴포넌트도 렌더링이 된다는 의미이다.
+
+자, 그럼 다시 호출이라는 단어의 의미로 돌아가보자. 함수는 무언가를 반드시 반환하는 친구이다. 함수가 호출되었을 때 반환할 것이 없으면 하다못해 반환값이 없다(absence)고 `undefined`라는 원시값을 반환한다. 리액트의 함수형 컴포넌트는 [주로 JSX(JavaScript XML)를 반환](#함수형-컴포넌트의-반환값)하기에 유저가 보는 UI(User Interface)를 반환한다고 볼 수 있다. 해당 JSX(React.createElement)는 위에서 말한대로 컴포넌트 내부의 로직에 의해 계산되고, <Link href='https://react.dev/reference/react/createElement#returns'>아래의 몇 가지 properties</Link>를 갖는 리액트 객체(React element object)로 트랜스파일러(transpiler; babel 등)에 의해 변환된다.
+
+- type: Element의 type이다. React Component가 될 수도 있고, html tag 이름에 대한 문자열을 뜻한다. 예를 들어, 함수형 컴포넌트나 클래스형 컴포넌트나 Fragment나 'h1', 'div' 등이 될 수 있다.
+- props: 아래의 ref나 key를 제외하고 전달된 props이다. 이는 객체이거나 null이다.
+- ref: 전달 받은 ref이다. 만약 ref 값이 없다면, null이다.
+- key: 전달 받은 key이다. 만약 key 값이 없다면, null이다. 
+
+<Callout type='warn'>물론, 계산 과정에서 effect가 발생할 수 있지만 이는 계산된 UI가 commit되어 화면에 반영된 후, `useEffect`에 의해 비동기적으로 실행된다.</Callout>
+
+정리해보자. 렌더링이라는 것은 리액트의 컴포넌트를 호출하는 것이다. 컴포넌트를 호출함으로써 컴포넌트는 JSX(React Element)를 반환한다. JSX는 사용자가 브라우저를 통해 보는 User Interface이므로, <b>리액트에서의 렌더링은 결국 브라우저의 렌더링에 필요한 DOM 트리를 만드는 리액트 자체 프로세스라고 볼 수 있다.</b>
+
+정리를 이어나가보자. 컴포넌트에 의해 반환되는 JSX는 결국 React element object라고 하는 리액트 객체이며 type, props, ref, key 프로퍼티를 갖는다. 이 프로퍼티 정보는 <b>`Fiber 객체`</b>에 포함되어 활용되는데 이 Fiber 객체에 대해서는 다음 포스트에서 알아보자. 꽤나 큰 분량이 될 수 있다.
+
+## 렌더링 파헤치기
+
+React는 참 똑똑하다. 체감 상 굉장히 빠른 속도로 계산하고, 이전 DOM과의 차이를 빠르게 비교하여 알아채고, 그 차이가 있는 경우에만 DOM을 업데이트한다.
+
+위에서 렌더링을 트리거하는 경우는 2가지라고 하였고, 리렌더링은 state와 props에 의해서 일어난다고 하였다. 사실, 리렌더링의 케이스는 구체적으로 나열하자면 더욱 구체적으로 나열할 수 있다. 모두 반응형 값인 state와 props 변경의 범주에 속하지만 말이다.
+
+- [클래스형 컴포넌트] setState의 실행
+- [클래스형 컴포넌트] forceUpdate 메소드의 실행
+- [함수형 컴포넌트] useState 훅 반환값인 배열의 두 번째 요소인 setter의 실행
+- [함수형 컴포넌트] useReducer 훅 반환값인 배열의 두 번째 요소인 dispatch 실행
+- 컴포넌트의 key props의 변경
+  - <Link href='https://react.dev/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key'>이런 특징을 이용해서 형제 컴포넌트를 구분하기 위한 수단으로만 쓰는 것이 아니라 그냥 React가 깉은 위치에 렌더링하는 컴포넌트라도 아예 다른 컴포넌트로 간주하도록 할 수 있다.</Link>
+- props의 변경
+- 부모 컴포넌트의 렌더링
+
+위의 케이스들 말고는 리액트에서 리렌더링을 유발하는 경우는 없다. 이런 이유로, 우리는 렌더링을 트리거하기 위해 `Redux Toolkit`을 쓸 때, `React Redux` 패키지도 설치한다. 내가 자주 쓰는 `zustand`는 위의 케이스에서 setter를 실행하는 케이스로 추가적인 패키지 설치 없이 리렌더링을 유발하지 않을까 싶다.
+
+글의 가장 초반부에 브라우저의 렌더링을 말하면서, 이런 문장을 언급하였다. '브라우저는 렌더 트리를 렌더링할 때 먼저 DOM 트리의 루트부터 시작하여 보이는 각 노드를 렌더링합니다'. 리액트의 렌더링 프로세스도 굉장히 유사하다. 렌더링이 트리거되면 리액트는 컴포넌트의 루트에서부터 시작하여 아래쪽으로 내려가며 업데이트가 필요하다고 지정되어 있는 모든 컴포넌트를 서칭한다. 업데이트가 필요한 컴포넌트를 찾고 나면 리액트 렌더링의 정의대로 해당 컴포넌트를 호출한 후, 그 반환값(React element object)을 저장한다. 이 모든 과정을 자세히 들여다 보는 것 또한 다음 포스트에서 다루도록 하겠다. 이는 <b>`재조정(Reconciliation)`</b>이라고 하고 `Fiber` 및 `Fiber tree`와 함께 설명이 되어야 한다.
+
+### 렌더 페이즈와 커밋 페이즈
+
+우리가 react lifecycle을 공부할 때, 한 번쯤은 봤을 이미지이다.
+
+![Image source: github.com/wojtekmaj/react-lifecycle-methods-diagram](/posts/deep_dive/what_is_rendering_in_react/3.png)
+
+<b>`렌더 페이즈(Render Phase)`</b>는 지금까지 계속 말하던 과정이다. 렌더링을 유발한 그 컴포넌트를 찾고, 호출하고, 계산하고, 그 반환값을 이전 반환값들과 비교하는 모든 과정들 말이다.
+
+<b>`커밋 페이즈(Commit Phase)`</b>는 렌더 페이즈에서 계산한 DOM을 유저가 볼 수 있도록 실제(real) DOM에 적용하는 것을 말한다. 이 단계 이후에 Reflow, Repaint 등의 브라우저 렌더링이 발생한다.
+
+렌더 페이즈와 커밋 페이즈, 그리고 그 전후 시점에 해당하는 클래스형 컴포넌트의 React lifecycle method도 이미지에 나와있는데, 이 부분은 조금 더 공부해서 설명에 확신이 들면 포스트해 볼 수 있도록 하겠다.
+
+지금까지 리액트 렌더링에 대해서 살펴보았다. 아직도 리액트를 공부 중이고 지금도 모르는 것이 많다고 생각하기에 사실 글을 쓰는 것에 있어서 다소 주저함이 있었다. 하지만 글을 쓰면서 또 되새김질이 되었고 공식문서를 한 번 더 찾아보게 되면서 아는 것이 한층 견고해진 것 같다. 앞으로 자주 내가 배운 것이나 느낀 것이 있으면 자주 글을 써보도록 하겠다.
+
+---
+
+### #친절한 리액트 공식 문서
+
+기회가 된다면 나도 오픈 소스의 번역 작업에 참여하고 싶다.
+
+- en: <Link href='https://react.dev/learn/render-and-commit'>react.dev/learn/render-and-commit</Link>
+- ko: <Link href='https://ko.react.dev/learn/render-and-commit'>ko.react.dev/learn/render-and-commit</Link>
+
+---
+
+### #몰랐던 내용
+
+> 그것은 바로 <Link href='https://ko.react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback'>ref 콜백</Link>
+
+얼마 전 `Notion-like editor`를 만들 때 였다. User가 여러 textarea 태그 중 하나에 focusing 할 때,  `currentFocusLine`이라는 상태를 user가 focusing 하는 태그의 정보로 바꿔주고 싶었다.
+
+해당 작업을 하기 위해서는 결국 현재 focus event가 발생한 target 태그와 태그들의 정보를 참조하는 객체 중 일치하는 것을 찾아내어 특정 값을 뽑아낼 필요가 있었다. 이를 위해서 리액트 공식 문서 중 `ref`를 팠는데, 지금껏 몰랐던 내용을 알게 되었다.
+
+위 콜아웃에 언급한 `ref 콜백`이다. ref 콜백을 활용하면 ref 어트리뷰트에 함수를 전달하여 node 인수를 활용할 수 있었다. 해당 node 인수를 value로 갖고 특정 값을 key로 가지게 하는 Map 객체를 만들면 내가 원하는 로직을 구성할 수 있었다.
+
+```js
+  // currentFocusLine state 초기화
+  const [currentFocusLine, setCurrentFocusLine] = useState(() => {
+    if (mode === 'create') {
+      return { key: initialKey, index: 0 };
+    } else {
+      return { key: contents[contents.length - 1].key, index: contents[contents.length - 1].index };
+    }
+  });
+
+  /* 어쩌구 저쩌구 */
+
+  // Focus event handler
+  const handleTextareaFocus = (e) => {
+    const map = getMap(lineCollectionRef);
+    let currentKey;
+    let currentIndex;
+
+    for (const value of map) {
+      const elementKey = value[0];
+      const element = value[1];
+
+      if (element === e.target) {
+        currentKey = elementKey;
+        break;
+      }
+    }
+
+    for (let i = 0; i < lineCollection.length; i++) {
+      if (lineCollection[i].key === currentKey) {
+        currentIndex = lineCollection[i].index;
+        break;
+      }
+    }
+
+    setCurrentFocusLine((prev) => ({ ...prev, key: currentKey, index: currentIndex }));
+  }
+
+  return (
+    {/* 어쩌구 저쩌구 */}
+    return (
+      <div key={key} className='relative'>
+        <textarea ref={(node) => {
+          const map = getMap(lineCollectionRef);
+
+          if (node) {
+            map.set(key, node);
+          } else {
+            map.delete(key);
+          }
+        }} value={value}
+    )
+  )
+```
+
+```js
+// getMap util 함수
+const getMap = (ref) => {
+  if (!ref.current) {
+    ref.current = new Map();
+  }
+
+  return ref.current;
+}
+```
+
+---
+
+### #함수형 컴포넌트의 반환값
+
+우리가 쓰는 컴포넌트는 주로 JSX를 반환한다. 그 외에도 어떤 것들을 반환할 수 있을까?
+
+1. React.createElement
+
+JSX를 사용하지 않고, 직접 React.createElement를 반환할 수 있다.
+
+```js
+function Component() {
+  return React.createElement('div', null, 'Hello World!');
+}
+```
+
+2. null 또는 undefined
+
+3. true 또는 false
+
+4. 문자열 또는 숫자
+
+5. createPortal
+
+```js
+function Component() {
+  return createPortal(
+    <p>This child is placed in the portal element</p>,
+    document.getElementById('portal')
+  );
+}
+```
+
+---
+
+## Reference
+
+- 모던 리액트 Deep Dive. 김용찬(2024). 위키북스
+- <Link href='https://react.dev/learn/render-and-commit'>React 공식 문서</Link>
+- <Link href='https://web.dev/articles/critical-rendering-path/render-tree-construction'>Render-tree Construction, Layout, and Paint by Ilya Grigorik</Link>
+
+---
+
+혹시 틀린 내용이 있다면 댓글 기능이 개발되기 전까지는 메일로 제보 부탁드립니다.
