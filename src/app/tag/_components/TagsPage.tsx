@@ -1,6 +1,6 @@
 import { Construction } from 'lucide-react';
 
-export default function BookmarkPage() {
+export default function TagsPage() {
   return (
     <section className='flex-center mx-auto gap-10 text-30'>
       <Construction className='size-30' />

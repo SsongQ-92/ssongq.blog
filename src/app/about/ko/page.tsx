@@ -1,5 +1,5 @@
-import IntroMyselfPage from '../_components/IntroMyselfPage';
+import AboutPage from '../_components/AboutPage';
 
 export default function AboutLocalePage() {
-  return <IntroMyselfPage />;
+  return <AboutPage />;
 }
