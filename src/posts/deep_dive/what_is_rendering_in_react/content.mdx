@@ -54,7 +54,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 렌더링은 위 2가지 경우에 의해 트리거된다. 공식 문서는 추가적으로 설명한다. "렌더링"이 트리거되어 호출된 함수형 컴포넌트가 return 하는 또 다른 컴포넌트가 있을 경우, 해당 컴포넌트를 그 다음에 렌더링하는 식으로 재귀적인 프로세스를 수행한다고 말이다. 이 과정은 중첩되는 컴포넌트가 더 이상 존재하지 않고 정확히 UI를 <b>`계산`</b>할 때까지 계속되는데, 이것은 우리가 리액트를 배우며 귀가 닳도록 듣는 부모 컴포넌트가 렌더링이 되면 자식 컴포넌트도 렌더링이 된다는 의미이다.
 
-자, 그럼 다시 호출이라는 단어의 의미로 돌아가보자. 함수는 무언가를 반드시 반환하는 친구이다. 함수가 호출되었을 때 반환할 것이 없으면 하다못해 반환값이 없다(absence)고 `undefined`라는 원시값을 반환한다. 리액트의 함수형 컴포넌트는 [주로 JSX(JavaScript XML)를 반환](#함수형-컴포넌트의-반환값)하기에 유저가 보는 UI(User Interface)를 반환한다고 볼 수 있다. 해당 JSX(React.createElement)는 위에서 말한대로 컴포넌트 내부의 로직에 의해 계산되고, <Link href='https://react.dev/reference/react/createElement#returns'>아래의 몇 가지 properties</Link>를 갖는 리액트 객체(React element object)로 트랜스파일러(transpiler; babel 등)에 의해 변환된다.
+자, 그럼 다시 호출이라는 단어의 의미로 돌아가보자. 함수는 무언가를 반드시 반환하는 친구이다. 함수가 호출되었을 때 반환할 것이 없으면 하다못해 반환값이 없다(absence)고 `undefined`라는 원시값을 반환한다. 리액트의 함수형 컴포넌트는 [주로 JSX(JavaScript XML)를 반환](#함수형-컴포넌트의-반환값)하기에 유저가 보는 UI(User Interface)를 반환한다고 볼 수 있다. 해당 JSX(React.createElement)는 위에서 말한대로 컴포넌트 내부의 로직에 의해 계산되고, <Link href='https://react.dev/reference/react/createElement#returns'>아래의 몇 가지 properties</Link>를 갖는 리액트 객체(React element object)로 변환된다.
 
 - type: Element의 type이다. React Component가 될 수도 있고, html tag 이름에 대한 문자열을 뜻한다. 예를 들어, 함수형 컴포넌트나 클래스형 컴포넌트나 Fragment나 'h1', 'div' 등이 될 수 있다.
 - props: 아래의 ref나 key를 제외하고 전달된 props이다. 이는 객체이거나 null이다.
