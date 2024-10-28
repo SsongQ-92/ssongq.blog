@@ -120,3 +120,5 @@ export const asyncGetPostDetail = async (category: string, slug: string) => {
   const detail = await asyncParsePost(filteredFilePath);
   return detail;
 };
+
+export const asyncGetPostListSitemap = async () => {};
