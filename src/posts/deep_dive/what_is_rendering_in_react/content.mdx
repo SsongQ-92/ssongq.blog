@@ -69,7 +69,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 ## 렌더링 파헤치기
 
-React는 참 똑똑하다. 내 체감 상 굉장히 빠른 속도로 계산하고, 이전 DOM과의 차이를 비교하여 알아채고, 그 차이가 있는 경우에만 DOM을 업데이트한다. 
+React는 참 똑똑하다. 체감 상 굉장히 빠른 속도로 계산하고, 이전 DOM과의 차이를 빠르게 비교하여 알아채고, 그 차이가 있는 경우에만 DOM을 업데이트한다.
 
 위에서 렌더링을 트리거하는 경우는 2가지라고 하였고, 리렌더링은 state와 props에 의해서 일어난다고 하였다. 사실, 리렌더링의 케이스는 구체적으로 나열하자면 더욱 구체적으로 나열할 수 있다. 모두 반응형 값인 state와 props 변경의 범주에 속하지만 말이다.
 
@@ -82,19 +82,23 @@ React는 참 똑똑하다. 내 체감 상 굉장히 빠른 속도로 계산하�
 - props의 변경
 - 부모 컴포넌트의 렌더링
 
-위의 케이스들 말고는 리액트에서 리렌더링을 유발하는 경우는 없다. 이런 이유로, 우리는 렌더링을 유발하기 위해 `Redux Toolkit`을 쓸 때, `React Redux` 패키지도 설치하는 것이다. 내가 애용하는 `zustand`는 위의 케이스에서 setter를 실행하는 케이스로 리렌더링을 유발하지 않을까 싶다.
+위의 케이스들 말고는 리액트에서 리렌더링을 유발하는 경우는 없다. 이런 이유로, 우리는 렌더링을 트리거하기 위해 `Redux Toolkit`을 쓸 때, `React Redux` 패키지도 설치한다. 내가 자주 쓰는 `zustand`는 위의 케이스에서 setter를 실행하는 케이스로 추가적인 패키지 설치 없이 리렌더링을 유발하지 않을까 싶다.
 
 글의 가장 초반부에 브라우저의 렌더링을 말하면서, 이런 문장을 언급하였다. '브라우저는 렌더 트리를 렌더링할 때 먼저 DOM 트리의 루트부터 시작하여 보이는 각 노드를 렌더링합니다'. 리액트의 렌더링 프로세스도 굉장히 유사하다. 렌더링이 트리거되면 리액트는 컴포넌트의 루트에서부터 시작하여 아래쪽으로 내려가며 업데이트가 필요하다고 지정되어 있는 모든 컴포넌트를 서칭한다. 업데이트가 필요한 컴포넌트를 찾고 나면 리액트 렌더링의 정의대로 해당 컴포넌트를 호출한 후, 그 반환값(React element object)을 저장한다. 이 모든 과정을 자세히 들여다 보는 것 또한 다음 포스트에서 다루도록 하겠다. 이는 <b>`재조정(Reconciliation)`</b>이라고 하고 `Fiber` 및 `Fiber tree`와 함께 설명이 되어야 한다.
 
 ### 렌더 페이즈와 커밋 페이즈
 
-우리가 react lifecycle을 공부할 때, 자주 보는 그림에 나와 있는 그 단어들이다. 
+우리가 react lifecycle을 공부할 때, 한 번쯤은 봤을 이미지이다.
 
 ![Image source: github.com/wojtekmaj/react-lifecycle-methods-diagram](/posts/deep_dive/what_is_rendering_in_react/3.png)
 
-<b>`렌더 단계(Render Phase)`</b>는 지금까지 계속 말하던 과정이다. 렌더링을 유발한 그 컴포넌트를 찾고, 호출하고, 계산하고, 그 반환값을 이전 반환값들과 비교하는 모든 과정들 말이다. 
+<b>`렌더 페이즈(Render Phase)`</b>는 지금까지 계속 말하던 과정이다. 렌더링을 유발한 그 컴포넌트를 찾고, 호출하고, 계산하고, 그 반환값을 이전 반환값들과 비교하는 모든 과정들 말이다.
 
-<b>`커밋 단계(Commit Phase)`</b>는 렌더 단계에서 계산한 DOM을 유저가 볼 수 있도록 실제(real) DOM에 적용하는 것을 말한다. 이 단계 이후에 Reflow, Repaint 등의 브라우저 렌더링이 발생한다.
+<b>`커밋 페이즈(Commit Phase)`</b>는 렌더 페이즈에서 계산한 DOM을 유저가 볼 수 있도록 실제(real) DOM에 적용하는 것을 말한다. 이 단계 이후에 Reflow, Repaint 등의 브라우저 렌더링이 발생한다.
+
+렌더 페이즈와 커밋 페이즈, 그리고 그 전후 시점에 해당하는 클래스형 컴포넌트의 React lifecycle method도 이미지에 나와있는데, 이 부분은 조금 더 공부해서 설명에 확신이 들면 포스트해 볼 수 있도록 하겠다.
+
+지금까지 리액트 렌더링에 대해서 살펴보았다. 아직도 리액트를 공부 중이고 지금도 모르는 것이 많다고 생각하기에 사실 글을 쓰는 것에 있어서 다소 주저함이 있었다. 하지만 글을 쓰면서 또 되새김질이 되었고 공식문서를 한 번 더 찾아보게 되면서 아는 것이 한층 견고해진 것 같다. 앞으로 자주 내가 배운 것이나 느낀 것이 있으면 자주 글을 써보도록 하겠다.
 
 ---
 
@@ -223,7 +227,6 @@ function Component() {
 - 모던 리액트 Deep Dive. 김용찬(2024). 위키북스
 - <Link href='https://react.dev/learn/render-and-commit'>React 공식 문서</Link>
 - <Link href='https://web.dev/articles/critical-rendering-path/render-tree-construction'>Render-tree Construction, Layout, and Paint by Ilya Grigorik</Link>
-- <Link href='https://www.telerik.com/blogs/understand-how-rendering-works-react'>Understand How Rendering Works in React written by Ifeoma Imoh</Link>
 
 ---
 
