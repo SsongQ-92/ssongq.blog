@@ -47,7 +47,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics gaId='G-4C70XPBHSV' />
-        <GoogleTagManager gtmId='GTM-MKT3WNQ4' />
+        <GoogleTagManager gtmId='G-4C70XPBHSV' />
       </body>
     </html>
   );
