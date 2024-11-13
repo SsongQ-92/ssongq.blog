@@ -56,7 +56,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 자, 그럼 다시 호출이라는 단어의 의미로 돌아가보자. 함수는 무언가를 반드시 반환하는 친구이다. 함수가 호출되었을 때 반환할 것이 없으면 하다못해 반환값이 없다(absence)고 `undefined`라는 원시값을 반환한다. 리액트의 함수형 컴포넌트는 [주로 JSX(JavaScript XML)를 반환](#함수형-컴포넌트의-반환값)하기에 유저가 보는 UI(User Interface)를 반환한다고 볼 수 있다. 해당 JSX(React.createElement)는 위에서 말한대로 컴포넌트 내부의 로직에 의해 계산되고, <Link href='https://react.dev/reference/react/createElement#returns'>아래의 몇 가지 properties</Link>를 갖는 리액트 객체(React element object)로 변환된다.
 
-- type: Element의 type이다. React Component가 될 수도 있고, html tag 이름에 대한 문자열을 뜻한다. 예를 들어, 함수형 컴포넌트나 클래스형 컴포넌트나 Fragment나 'h1', 'div' 등이 될 수 있다.
+- type: Element의 type이다. React Component가 될 수도 있고, html tag 이름에 대한 문자열을 뜻할 수도 있다. 예를 들어, 함수형 컴포넌트나 클래스형 컴포넌트나 Fragment나 'h1', 'div' 등이 될 수 있다.
 - props: 아래의 ref나 key를 제외하고 전달된 props이다. 이는 객체이거나 null이다.
 - ref: 전달 받은 ref이다. 만약 ref 값이 없다면, null이다.
 - key: 전달 받은 key이다. 만약 key 값이 없다면, null이다. 
