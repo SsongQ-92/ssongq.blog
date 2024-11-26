@@ -5,7 +5,7 @@ desc: 이 렌더링이 니 렌더링이냐 리-렌더링이냐
 thumbnail: /posts/deep_dive/what_is_rendering_in_react/thumbnail.png
 ---
 
-나는 프론트엔드 개발자가 되기 위해 계속해서 리액트와 친해지고 있다. 코드 작업을 하는 중에 때때로 [리액트 공식 문서](#친절한-리액트-공식-문서)를 참고하기도 하고 지하철에서는 내가 약한 부분을 보충하고자 이런저런 정보를 찾아보기도 한다. 어느 날은 아예 [몰랐던 내용](#몰랐던-내용)을 새롭게 접하기도 한다.
+나는 프론트엔드 개발자가 되기 위해 계속해서 리액트와 친해지고 있다. 코드 작업을 하는 중에 때때로 <a href="#친절한-리액트-공식-문서">리액트 공식 문서</a>를 참고하기도 하고 지하철에서는 내가 약한 부분을 보충하고자 이런저런 정보를 찾아보기도 한다. 어느 날은 아예 <a href="#몰랐던-내용">몰랐던 내용</a>을 새롭게 접하기도 한다.
 
 리액트 라이브러리를 처음 만나고 공부할 때, 가장 헷갈리고 나에게 혼동을 주었던 단어가 <b>`렌더링(rendering)`</b>이었다. 리액트를 접하기 전까지 렌더링이라는 단어는 나에게, DOM(Document Object Model; 웹 페이지에 대한 인터페이스)과 CSSOM(CSS Object Model)이 합쳐지며 Render tree를 형성하고 <b>화면을 새롭게 그리는 것</b>에 지나지 않았기 때문이다. 브라우저의 렌더링, 즉 '브라우저는 렌더 트리를 렌더링할 때 먼저 DOM 트리의 루트부터 시작하여 보이는 각 노드를 렌더링합니다' 할 때의 그 렌더링 말이다.
 
@@ -54,7 +54,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 렌더링은 위 2가지 경우에 의해 트리거된다. 공식 문서는 추가적으로 설명한다. "렌더링"이 트리거되어 호출된 함수형 컴포넌트가 return 하는 또 다른 컴포넌트가 있을 경우, 해당 컴포넌트를 그 다음에 렌더링하는 식으로 재귀적인 프로세스를 수행한다고 말이다. 이 과정은 중첩되는 컴포넌트가 더 이상 존재하지 않고 정확히 UI를 <b>`계산`</b>할 때까지 계속되는데, 이것은 우리가 리액트를 배우며 귀가 닳도록 듣는 부모 컴포넌트가 렌더링이 되면 자식 컴포넌트도 렌더링이 된다는 의미이다.
 
-자, 그럼 다시 호출이라는 단어의 의미로 돌아가보자. 함수는 무언가를 반드시 반환하는 친구이다. 함수가 호출되었을 때 반환할 것이 없으면 하다못해 반환값이 없다(absence)고 `undefined`라는 원시값을 반환한다. 리액트의 함수형 컴포넌트는 [주로 JSX(JavaScript XML)를 반환](#함수형-컴포넌트의-반환값)하기에 유저가 보는 UI(User Interface)를 반환한다고 볼 수 있다. 해당 JSX(React.createElement)는 위에서 말한대로 컴포넌트 내부의 로직에 의해 계산되고, <Link href='https://react.dev/reference/react/createElement#returns'>아래의 몇 가지 properties</Link>를 갖는 리액트 객체(React element object)로 변환된다.
+자, 그럼 다시 호출이라는 단어의 의미로 돌아가보자. 함수는 무언가를 반드시 반환하는 친구이다. 함수가 호출되었을 때 반환할 것이 없으면 하다못해 반환값이 없다(absence)고 `undefined`라는 원시값을 반환한다. 리액트의 함수형 컴포넌트는 <a href="#함수형-컴포넌트의-반환값">주로 JSX(JavaScript XML)를 반환</a>하기에 유저가 보는 UI(User Interface)를 반환한다고 볼 수 있다. 해당 JSX(React.createElement)는 위에서 말한대로 컴포넌트 내부의 로직에 의해 계산되고, <Link href='https://react.dev/reference/react/createElement#returns'>아래의 몇 가지 properties</Link>를 갖는 리액트 객체(React element object)로 변환된다.
 
 - type: Element의 type이다. React Component가 될 수도 있고, html tag 이름에 대한 문자열을 뜻할 수도 있다. 예를 들어, 함수형 컴포넌트나 클래스형 컴포넌트나 Fragment나 'h1', 'div' 등이 될 수 있다.
 - props: 아래의 ref나 key를 제외하고 전달된 props이다. 이는 객체이거나 null이다.
@@ -102,7 +102,7 @@ React는 참 똑똑하다. 체감 상 굉장히 빠른 속도로 계산하고, �
 
 ---
 
-### #친절한 리액트 공식 문서
+<h3 id="친절한-리액트-공식-문서">#친절한 리액트 공식 문서</h3>
 
 기회가 된다면 나도 오픈 소스의 번역 작업에 참여하고 싶다.
 
@@ -111,7 +111,7 @@ React는 참 똑똑하다. 체감 상 굉장히 빠른 속도로 계산하고, �
 
 ---
 
-### #몰랐던 내용
+<h3 id="몰랐던-내용">#몰랐던 내용</h3>
 
 > 그것은 바로 <Link href='https://ko.react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback'>ref 콜백</Link>
 
@@ -189,7 +189,7 @@ const getMap = (ref) => {
 
 ---
 
-### #함수형 컴포넌트의 반환값
+<h3 id="함수형-컴포넌트의-반환값">#함수형 컴포넌트의 반환값</h3>
 
 우리가 쓰는 컴포넌트는 주로 JSX를 반환한다. 그 외에도 어떤 것들을 반환할 수 있을까?
 
