@@ -130,3 +130,13 @@ export const asyncGetPostListSitemap = async () => {
   }));
   return sitemapPostList;
 };
+
+export const asyncGetPostListRss = async () => {
+  const postList = await asyncGetPostList();
+  const rssPostList = postList.map(({ title, url, date }) => ({
+    title,
+    link: `${baseURL}${url}`,
+    pubDate: date,
+  }));
+  return rssPostList;
+};
