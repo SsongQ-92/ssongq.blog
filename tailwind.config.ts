@@ -95,6 +95,9 @@ const config: Config = {
             '.callout-contents > p': {
               margin: 0,
             },
+            '.callout-contents > ul': {
+              margin: 0,
+            },
 
             code: {
               counterReset: 'line',
