@@ -1,4 +1,14 @@
+import { Metadata } from 'next';
+
+import { RESUME_DATA } from '@/data/resume-data';
 import { Construction } from 'lucide-react';
+
+export function generateMetadata(): Metadata {
+  return {
+    title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
+    description: RESUME_DATA.summary,
+  };
+}
 
 export default function AboutPage() {
   return (
