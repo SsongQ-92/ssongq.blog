@@ -12,9 +12,6 @@ export function generateMetadata(): Metadata {
 
 export default function AboutPage() {
   return (
-    <section className='flex-center mx-auto gap-10 text-30'>
-      <Construction className='size-30' />
-      <span>공사 중</span>
-    </section>
+    <main className='container relative scroll-my-12 mx-auto overflow-auto p-6 sm:p-9 md:p-16 print:p-12 print:pt-0'></main>
   );
 }
