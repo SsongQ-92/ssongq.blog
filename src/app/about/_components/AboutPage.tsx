@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 import IconGlobe from '@/components/icon/Globe';
+import Button from '@/components/ui/Button';
 import Section from '@/components/ui/Section';
 import { RESUME_DATA } from '@/data/resume-data';
+import { cn } from '@/lib/utils';
 
 export function generateMetadata(): Metadata {
   return {
@@ -32,8 +35,34 @@ export default function AboutPage() {
                 {RESUME_DATA.location}
               </a>
             </p>
+            <div className='flex justify-center gap-x-8 pt-3 text-14 text-muted-foreground sm:justify-start print:hidden'>
+              {RESUME_DATA.contact.social.map((social) => (
+                <Button key={social.name} className='size-30' intent='outline' size-='icon'>
+                  <a href={social.url} target='_blank' rel='noreferrer'>
+                    <social.icon className='size-16 fill-muted-foreground' />
+                  </a>
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div className='flex-shrink-0 w-150 h-150 rounded-sm overflow-hidden shadow-md'>
+            <Image
+              src={RESUME_DATA.avatarUrl}
+              alt={RESUME_DATA.name}
+              width={150}
+              height={150}
+              quality={100}
+              priority
+            />
           </div>
         </div>
+        <Section>
+          <h2 className='text-28 font-bold'>About</h2>
+          <p className='text-pretty leading-8 text-muted-foreground print:text-[12px] sm:whitespace-pre-wrap whitespace-normal'>
+            {RESUME_DATA.summary}
+          </p>
+        </Section>
       </Section>
     </main>
   );
