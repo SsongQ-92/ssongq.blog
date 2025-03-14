@@ -5,7 +5,6 @@ import IconGlobe from '@/components/icon/Globe';
 import Button from '@/components/ui/Button';
 import Section from '@/components/ui/Section';
 import { RESUME_DATA } from '@/data/resume-data';
-import { cn } from '@/lib/utils';
 
 export function generateMetadata(): Metadata {
   return {
