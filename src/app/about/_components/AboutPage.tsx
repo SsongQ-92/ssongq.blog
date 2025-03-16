@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 
+import IconEmail from '@/components/icon/Email';
 import IconGlobe from '@/components/icon/Globe';
 import Button from '@/components/ui/Button';
+import * as D from '@/components/ui/Dialog';
 import Section from '@/components/ui/Section';
 import { RESUME_DATA } from '@/data/resume-data';
 
@@ -42,6 +44,30 @@ export default function AboutPage() {
                   </a>
                 </Button>
               ))}
+              {RESUME_DATA.contact.email && (
+                <D.DialogRoot>
+                  <D.DialogTrigger>
+                    <Button className='size-30' intent='outline' size='icon'>
+                      <IconEmail className='size-16 fill-muted-foreground' />
+                    </Button>
+                  </D.DialogTrigger>
+
+                  <D.DialogContent className='max-w-300'>
+                    <D.DialogHeader>
+                      <D.DialogTitle className='p-0'>Email Address</D.DialogTitle>
+                      <D.DialogDescription />
+                    </D.DialogHeader>
+                    <div className='flex items-center space-x-2'>
+                      <div className='grid flex-1 gap-2'>
+                        <label htmlFor='link' className='sr-only'>
+                          Link
+                        </label>
+                        <input id='link' defaultValue={RESUME_DATA.contact.email} readOnly />
+                      </div>
+                    </div>
+                  </D.DialogContent>
+                </D.DialogRoot>
+              )}
             </div>
           </div>
 
